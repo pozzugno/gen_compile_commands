@@ -215,14 +215,13 @@ def main():
     # Resolve .cproj path
     cproj_path = args.cproj
     if not cproj_path:
-        search_dir = os.path.dirname(os.path.abspath(__file__))
-        found = find_cproj_files(search_dir)
+        found = find_cproj_files('.')
         if len(found) == 0:
-            print(f"Error: no .cproj files found in {search_dir}", file=sys.stderr)
+            print(f"Error: no .cproj files found in the current directory", file=sys.stderr)
             print("Use --cproj to specify the path.", file=sys.stderr)
             sys.exit(1)
         elif len(found) > 1:
-            print(f"Error: multiple .cproj files found in {search_dir}:", file=sys.stderr)
+            print(f"Error: multiple .cproj files found in the current directory:", file=sys.stderr)
             for f in found:
                 print(f"  {os.path.basename(f)}", file=sys.stderr)
             print("Use --cproj to specify which one to use.", file=sys.stderr)
